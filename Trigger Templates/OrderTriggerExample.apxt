@@ -1,0 +1,17 @@
+/*
+ *  @Author: Endrit Sino
+ *  @Date: 20/09/018
+ *
+ *  @Description: The purpose of this example is to show how the TriggerHandler abstract class streamlines the
+ *  trigger extension and maintainability in regards of the different database events that we might be interested on
+ *  extending with a particular business logic.
+ *
+ *  When we want to add a new trigger, 'say after delete', we firstly add the event at the OrderTrigger, and then go at the
+ *  OrderTriggerHandler, and add there the specific business logic that we want to take place after an order deletion.
+ */
+trigger OrderTrigger on Job__c (before insert,
+                                after insert,
+                                before update,
+                                after update) {
+    new OrderTriggerHandler().execute();
+}
